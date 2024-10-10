@@ -11,24 +11,28 @@
             margin: 0;
             padding: 0;
         }
+
         .top-header {
             background-color: #3465A4;
             height: 50px;
             position: relative;
         }
-        .top-header .logo {
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-        }
+
+            .top-header .logo {
+                position: absolute;
+                top: 10px;
+                left: 20px;
+                color: white;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
         .header {
             text-align: center;
             padding: 20px;
             color: black;
         }
+
         .container {
             margin: 20px auto;
             width: 80%;
@@ -38,15 +42,18 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
+
         .question {
             font-size: 18px;
             margin-bottom: 10px;
         }
+
         .options {
             display: flex;
             justify-content: space-around;
             margin-bottom: 20px;
         }
+
         .option {
             cursor: pointer;
             padding: 15px;
@@ -56,13 +63,16 @@
             background-color: #f4f4f4;
             transition: background-color 0.3s;
         }
-        .option:hover {
-            background-color: #ddd;
-        }
-        .option.selected {
-            background-color: #3465A4;
-            color: white;
-        }
+
+            .option:hover {
+                background-color: #ddd;
+            }
+
+            .option.selected {
+                background-color: #3465A4;
+                color: white;
+            }
+
         textarea {
             width: 100%;
             height: 100px;
@@ -72,6 +82,7 @@
             margin-bottom: 20px;
             resize: none;
         }
+
         button {
             background-color: #3465A4;
             color: white;
@@ -83,9 +94,11 @@
             float: right;
             margin-top: 20px;
         }
-        button:hover {
-            background-color: #29497d;
-        }
+
+            button:hover {
+                background-color: #29497d;
+            }
+
         .clearfix {
             clear: both;
         }
@@ -108,19 +121,19 @@
             Mennyire volt elégedett az ügyintézéssel?
         </div>
         <div class="options">
-            <div class="option" onclick="toggleOption(this, 'Nagyon!')">
+            <div class="option" onclick="toggleOption(this, 'Nagyon!')" data-question="1">
                 <p>😊</p>
                 Nagyon!
             </div>
-            <div class="option" onclick="toggleOption(this, 'Inkább igen')">
+            <div class="option" onclick="toggleOption(this, 'Inkább igen')" data-question="1">
                 <p>🙂</p>
                 Inkább igen
             </div>
-            <div class="option" onclick="toggleOption(this, 'Inkább nem')">
+            <div class="option" onclick="toggleOption(this, 'Inkább nem')" data-question="1">
                 <p>😐</p>
                 Inkább nem
             </div>
-            <div class="option" onclick="toggleOption(this, 'Egyáltalán nem')">
+            <div class="option" onclick="toggleOption(this, 'Egyáltalán nem')" data-question="1">
                 <p>😠</p>
                 Egyáltalán nem
             </div>
@@ -130,19 +143,19 @@
             Megfelelőnek találta a bejelentésére adott válaszunkat, megoldásunkat?
         </div>
         <div class="options">
-            <div class="option" onclick="toggleOption(this, 'Nagyon!')">
+            <div class="option" onclick="toggleOption(this, 'Nagyon!')" data-question="2">
                 <p>😊</p>
                 Nagyon!
             </div>
-            <div class="option" onclick="toggleOption(this, 'Inkább igen')">
+            <div class="option" onclick="toggleOption(this, 'Inkább igen')" data-question="2">
                 <p>🙂</p>
                 Inkább igen
             </div>
-            <div class="option" onclick="toggleOption(this, 'Inkább nem')">
+            <div class="option" onclick="toggleOption(this, 'Inkább nem')" data-question="2">
                 <p>😐</p>
                 Inkább nem
             </div>
-            <div class="option" onclick="toggleOption(this, 'Egyáltalán nem')">
+            <div class="option" onclick="toggleOption(this, 'Egyáltalán nem')" data-question="2">
                 <p>😠</p>
                 Egyáltalán nem
             </div>
@@ -152,19 +165,19 @@
             Mennyire találta segítőkésznek ügyintézőnk hozzáállását?
         </div>
         <div class="options">
-            <div class="option" onclick="toggleOption(this, 'Nagyon!')">
+            <div class="option" onclick="toggleOption(this, 'Nagyon!')" data-question="3">
                 <p>😊</p>
                 Nagyon!
             </div>
-            <div class="option" onclick="toggleOption(this, 'Inkább igen')">
+            <div class="option" onclick="toggleOption(this, 'Inkább igen')" data-question="3">
                 <p>🙂</p>
                 Inkább igen
             </div>
-            <div class="option" onclick="toggleOption(this, 'Inkább nem')">
+            <div class="option" onclick="toggleOption(this, 'Inkább nem')" data-question="3">
                 <p>😐</p>
                 Inkább nem
             </div>
-            <div class="option" onclick="toggleOption(this, 'Egyáltalán nem')">
+            <div class="option" onclick="toggleOption(this, 'Egyáltalán nem')" data-question="3">
                 <p>😠</p>
                 Egyáltalán nem
             </div>
@@ -173,26 +186,52 @@
         <div class="question">
             Milyen egyéb észrevétele van az ügyintézéssel kapcsolatban?
         </div>
-        <textarea placeholder="Írja ide az észrevételeit..."></textarea>
+        <textarea id="comments" placeholder="Írja ide az észrevételeit..."></textarea>
 
-        <button type="submit">Elküldöm</button>
+        <button type="button" onclick="submitForm()">Elküldöm</button>
         <div class="clearfix"></div>
     </div>
 
     <script>
-        function toggleOption(element, answer) {
-            if (element.classList.contains('selected')) {
-                element.classList.remove('selected');
-                console.log("Deselected answer:", answer);
-            } else {
-                const options = element.parentElement.querySelectorAll('.option');
-                options.forEach(option => {
-                    option.classList.remove('selected');
-                });
+        let selectedAnswers = {
+            question1: "",
+            question2: "",
+            question3: "",
+        };
 
-                element.classList.add('selected');
-                console.log("Selected answer:", answer);
-            }
+        function toggleOption(element, answer) {
+            const questionNumber = element.getAttribute('data-question');
+
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+
+            element.classList.add('selected');
+
+            selectedAnswers[`question${questionNumber}`] = answer;
+        }
+
+        function submitForm() {
+            const comments = document.getElementById('comments').value;
+
+            const data = {
+                question1: selectedAnswers.question1,
+                question2: selectedAnswers.question2,
+                question3: selectedAnswers.question3,
+                comments: comments
+            };
+
+            fetch('https://script.google.com/macros/s/AKfycbwkhGbXwJl9BtQgajqkex5b7M_TQp2TlTI2oEr55VUIoxeVbegvgejlSbSRvN5gExEmLA/exec', {
+                method: 'POST',
+                body: new URLSearchParams(data),
+            })
+                .then(response => response.text())
+                .then(data => {
+                    alert('Sikeresen rögzítettük válaszát!');
+                    console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
     </script>
 
